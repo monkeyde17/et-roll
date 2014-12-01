@@ -17,13 +17,16 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
+import java.sql.Time;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JRootPane;
 import javax.swing.plaf.basic.BasicSplitPaneUI.KeyboardDownRightHandler;
 
-public class ETFrame extends JFrame implements MouseMotionListener, MouseListener, MouseWheelListener, FocusListener{
+public class ETFrame extends JFrame implements MouseListener, MouseMotionListener {
 
 	/**
 	 * 
@@ -36,7 +39,7 @@ public class ETFrame extends JFrame implements MouseMotionListener, MouseListene
 	private Point point;
 	
 	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-
+	
 	public ETFrame() {
 		// TODO Auto-generated constructor stub
 		super();
@@ -51,11 +54,8 @@ public class ETFrame extends JFrame implements MouseMotionListener, MouseListene
 		
 		/* bind the listener */
 		addMouseListener(this);
-		addMouseMotionListener(this);
-		addMouseWheelListener(this);
-		addFocusListener(this);
 	}
-
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
@@ -97,23 +97,5 @@ public class ETFrame extends JFrame implements MouseMotionListener, MouseListene
 	public void mouseMoved(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
-	}
-
-	@Override
-	public void mouseWheelMoved(MouseWheelEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void focusGained(FocusEvent e) {
-		// TODO Auto-generated method stub
-		setOpacity(1.0f);
-	}
-
-	@Override
-	public void focusLost(FocusEvent e) {
-		// TODO Auto-generated method stub
-		setOpacity(0.4f);
 	}
 }

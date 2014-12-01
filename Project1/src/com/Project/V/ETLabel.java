@@ -11,7 +11,9 @@ import java.awt.event.MouseWheelListener;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class ETLabel extends Label implements MouseListener, FocusListener {
+import com.Project.M.ETCore;
+
+public class ETLabel extends Label implements MouseListener, MouseWheelListener {
 
 	/**
 	 * 
@@ -22,7 +24,8 @@ public class ETLabel extends Label implements MouseListener, FocusListener {
 	
 	private final int HEIGHT = 100;
 	private final int WIDTH = 200;
-	private boolean FLAG = true;
+	
+	private boolean STATFLAG = true;
 	
 	public ETLabel() {
 		// TODO Auto-generated constructor stub
@@ -34,13 +37,29 @@ public class ETLabel extends Label implements MouseListener, FocusListener {
 		setBackground(Color.pink);
 		
 		addMouseListener(this);
-		addFocusListener(this);
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		STATFLAG = !STATFLAG;
+		if (STATFLAG) {
+			try {
+				timer.cancel();
+			} catch (Exception e2) {
+				// TODO: handle exception
+				e2.printStackTrace();
+			}
+		} else {
+			timer = new Timer();
+			timer.schedule(new TimerTask() {
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					setText(String.valueOf(ETCore.Next(10000)));
+				}
+			}, 0, 30);
+		}
 	}
 
 	@Override
@@ -58,42 +77,18 @@ public class ETLabel extends Label implements MouseListener, FocusListener {
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		if (FLAG) {
-			timer = new Timer();
-			timer.schedule(new TimerTask() {
 
-				@Override
-				public void run() {
-					// TODO Auto-generated method stub
-					setText(String.valueOf((int) (Math.random() * 200000)));
-				}
-			}, 0, 30);
-		}
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
-		if (FLAG) {
-			try {
-				timer.cancel();
-			} catch (Exception e2) {
-				// TODO: handle exception
-				e2.printStackTrace();
-			}
-		}
+
 	}
 
 	@Override
-	public void focusGained(FocusEvent e) {
+	public void mouseWheelMoved(MouseWheelEvent e) {
 		// TODO Auto-generated method stub
-		FLAG = true;
+		
 	}
-
-	@Override
-	public void focusLost(FocusEvent e) {
-		// TODO Auto-generated method stub
-		FLAG = false;
-	}
-
 }
