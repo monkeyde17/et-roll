@@ -44,7 +44,7 @@ public class ETFrame extends JFrame implements MouseListener, MouseMotionListene
 		// TODO Auto-generated constructor stub
 		super();
 		
-		setSize(WIDTH, HEIGHT);
+		//setSize(WIDTH, HEIGHT);
 		setLocation( (screenSize.width - WIDTH) / 2, (screenSize.height - HEIGHT) / 2);
 		setResizable(false);
 		setUndecorated(true);
