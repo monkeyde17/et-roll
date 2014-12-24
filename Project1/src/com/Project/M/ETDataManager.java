@@ -58,7 +58,17 @@ public class ETDataManager {
 	
 	public ETPerson getRandPerson() {
 		int cnt = list.size();
-		int rid = ETCore.Rand(cnt);
+		
+		
+		int rid = 0;
+		
+		if (randWay.equals("rand")) {
+			rid = ETCore.Rand(cnt);
+		} else if (randWay.equals("roll")) {
+			rid = ETCore.Next(cnt);
+		} else if (randWay.equals("rand+pow")) {
+			rid = ETCore.Rand(cnt);
+		}
 		
 		return list.get(rid);
 	}

@@ -40,6 +40,9 @@ public class ETLabel extends Label implements MouseListener, MouseWheelListener 
 	
 	private ETPerson curPerson = null;
 	
+	private int leftTime = 0;
+	
+	
 	public ETLabel() {
 		// TODO Auto-generated constructor stub
 		super();
@@ -92,15 +95,34 @@ public class ETLabel extends Label implements MouseListener, MouseWheelListener 
 			}
 		} else {
 			timer = new Timer();
+			leftTime = ETDataManager.getInstant().getRandSecond() * 1000;
+			
 			timer.schedule(new TimerTask() {
 				@Override
 				public void run() {
 					// TODO Auto-generated method stub
 					
+					
+					if (leftTime > -500 && leftTime <= 0) {
+						STATFLAG = false;
+						leftTime = 0;
+						timer.cancel();
+					}
+					
+					/* inf, this line code may cause some problem */
+					leftTime -= 30;
+					
 					curPerson = ETDataManager.getInstant().getRandPerson();
 					int type = ETDataManager.getInstant().getShowWay();
 					setText(curPerson.getNameByType(type));					
 					updateImage();
+					
+					if (ETDataManager.getInstant().getRandWay().equals("roll")) {
+						STATFLAG = false;
+						leftTime = 0;
+						timer.cancel();
+						return;
+					}
 				}
 			}, 0, 30);
 		}

@@ -34,10 +34,12 @@ public class ETReader {
 			
 			List<ETPerson> personsList = new ArrayList<ETPerson>();
 			while ((line = bufferedReader.readLine()) != null) {
+				/* drop the first line */
 				if (first) {
 					first = false;
 					continue;
 				}
+				
 				ETPerson person = new ETPerson(line);
 				personsList.add(person);
 			}
