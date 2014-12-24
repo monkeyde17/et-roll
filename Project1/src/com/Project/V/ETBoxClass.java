@@ -9,6 +9,7 @@ import javax.swing.JComboBox;
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
 
+import com.Project.M.ETDataManager;
 import com.Project.M.ETFile;
 import com.Project.M.ETLog;
 
@@ -29,9 +30,6 @@ public class ETBoxClass extends JComboBox<Object> implements ItemListener, Popup
 		
 		addItemListener(this);
 		addPopupMenuListener(this);
-		
-
-		loadConfig();
 	}
 	
 	private void updateItems() {
@@ -39,27 +37,21 @@ public class ETBoxClass extends JComboBox<Object> implements ItemListener, Popup
 		for (String item : ETFile.getCSVFile()) {
 			addItem(item);
 		}
-	}
-	
-	private void loadConfig() {
 		
+		ETDataManager.getInstant().setClassFileUrl(getItemAt(0).toString());
 	}
-	
-	
-	
-	
+
 
 	@Override
 	public void itemStateChanged(ItemEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getStateChange() == ItemEvent.SELECTED) {
-			//e.getItemSelectable();
-			//int id = e.getID();
+
 			String string = e.getItem().toString();
 			int id = getSelectedIndex();
-			getSelectedItem();
 			
 			ETLog.debug(id + " " + string);
+			ETDataManager.getInstant().setClassFileUrl(string);
 		}
 	}
 
@@ -68,7 +60,7 @@ public class ETBoxClass extends JComboBox<Object> implements ItemListener, Popup
 	@Override
 	public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
 		// TODO Auto-generated method stub
-		ETLog.debug("reload the config file");
+		ETLog.debug("reload the csv file");
 		updateItems();
 	}
 

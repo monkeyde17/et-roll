@@ -1,17 +1,20 @@
 package com.Project.M;
 
+import java.util.List;
 import com.Project.V.ETBoxWay;
 
 public class ETDataManager {
 	
 	
-	private String classFileUrl = null;
+	private String classFileUrl = "";
 	private int randSecond = -1;
 	private String randWay = ETBoxWay.RAND_STRING;
 	
-	static private ETDataManager instant = null;
 	
-	static ETDataManager getInstant() {
+	private List<ETPerson> list = null;
+	
+	static private ETDataManager instant = null;
+	static public ETDataManager getInstant() {
 		if (instant == null) {
 			instant = new ETDataManager();
 		}
@@ -23,7 +26,10 @@ public class ETDataManager {
 	}
 
 	public void setClassFileUrl(String classFileUrl) {
-		this.classFileUrl = classFileUrl;
+		if (!this.classFileUrl.equals(classFileUrl)) {
+			this.classFileUrl = classFileUrl;
+			updatePersonList();
+		}
 	}
 
 	public int getRandSecond() {
@@ -41,4 +47,22 @@ public class ETDataManager {
 	public void setRandWay(String randWay) {
 		this.randWay = randWay;
 	}
+	
+	private void updatePersonList() {
+		list = new ETReader(classFileUrl).getCurList();
+	}
+	
+	public List<ETPerson> getPersonList() {
+		return list;
+	}
+	
+	public String getRandName() {
+		int cnt = list.size();
+		int rid = ETCore.Rand(cnt);
+		
+		ETPerson person = list.get(rid);
+		
+		return person.getId() + ":\n"+ person.getName();
+	}
 }
+

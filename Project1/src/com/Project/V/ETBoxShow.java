@@ -1,9 +1,15 @@
 package com.Project.V;
 
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+
 import javax.swing.JComboBox;
 
-public class ETBoxShow extends JComboBox<String> {
+import com.Project.M.ETDataManager;
+import com.Project.M.ETLog;
 
+public class ETBoxShow extends JComboBox<String> {
+	
 	/**
 	 * 
 	 */
@@ -20,5 +26,9 @@ public class ETBoxShow extends JComboBox<String> {
 		addItem(NAME_STRING);
 		addItem(ID_STRING + "+" + NAME_STRING);
 	}
+
+
+
+
 
 }

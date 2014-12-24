@@ -19,7 +19,7 @@ public class ETReader {
 	
 	private String READFILENAME = "";
 	
-	private ETReader(String file) {
+	ETReader(String file) {
 		// TODO Auto-generated constructor stub
 		READFILENAME = DIR + File.separator + file;
 	}
@@ -30,9 +30,14 @@ public class ETReader {
 					new FileInputStream(READFILENAME), ENCODE);
 			BufferedReader bufferedReader = new BufferedReader(reader);
 			String line = "";
-		
+			boolean first = true;
+			
 			List<ETPerson> personsList = new ArrayList<ETPerson>();
 			while ((line = bufferedReader.readLine()) != null) {
+				if (first) {
+					first = false;
+					continue;
+				}
 				ETPerson person = new ETPerson(line);
 				personsList.add(person);
 			}

@@ -18,6 +18,7 @@ import java.util.TimerTask;
 import javax.imageio.ImageIO;
 
 import com.Project.M.ETCore;
+import com.Project.M.ETDataManager;
 
 public class ETLabel extends Label implements MouseListener, MouseWheelListener {
 
@@ -89,7 +90,9 @@ public class ETLabel extends Label implements MouseListener, MouseWheelListener 
 				@Override
 				public void run() {
 					// TODO Auto-generated method stub
+					
 					setText(String.valueOf(ETCore.Next(10000)));
+					setText(ETDataManager.getInstant().getRandName());
 					updateImage();
 				}
 			}, 0, 30);

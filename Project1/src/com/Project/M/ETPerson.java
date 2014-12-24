@@ -14,11 +14,11 @@ public class ETPerson {
 	}
 	
 	public ETPerson(String format) {
-		String[] array = format.split(",");
+		String[] array = format.split(";");
 				
 		id = array[0];
 		name = array[1];
-		imageUrl = array[3];
+		imageUrl = array[2];
 	}
 
 	

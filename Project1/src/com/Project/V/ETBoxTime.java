@@ -1,8 +1,14 @@
 package com.Project.V;
 
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+
 import javax.swing.JComboBox;
 
-public class ETBoxTime extends JComboBox<String> {
+import com.Project.M.ETDataManager;
+import com.Project.M.ETLog;
+
+public class ETBoxTime extends JComboBox<String> implements ItemListener {
 
 	/**
 	 * 
@@ -18,5 +24,24 @@ public class ETBoxTime extends JComboBox<String> {
 			addItem(String.valueOf(i));
 		}
 		
+		ETDataManager.getInstant().setRandSecond(-1);
+		
+	}
+
+	@Override
+	public void itemStateChanged(ItemEvent e) {
+		// TODO Auto-generated method stub
+		if (e.getStateChange() == ItemEvent.SELECTED) {
+
+			String string = e.getItem().toString();
+			int id = getSelectedIndex();
+
+			ETLog.debug(id + ":" + string);
+			if (id == 0) {
+				ETDataManager.getInstant().setRandSecond(-1);
+			} else {
+				ETDataManager.getInstant().setRandSecond(id);
+			}
+		}
 	}
 }
