@@ -13,7 +13,7 @@ import java.util.List;
 
 public class ETReader {
 	
-	private final String DIR = "data";
+	private final String DIR = "class";
 	private final String ENCODE = "GBK";
 	
 	

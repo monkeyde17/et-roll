@@ -39,11 +39,14 @@ public class UI {
 		nPanel.add(new Label("s"));
 		
 		frame.getContentPane().add(nPanel, "North");
-
 		frame.getContentPane().add(new ETLabel(), "Center");
 		
-		Button button = new Button("=。=");
-		frame.getContentPane().add(button, "South");
+		//Button button = new Button("=。=");
+		//frame.getContentPane().add(button, "South");
 		frame.pack();
+		
+		
+		frame.setSize(frame.getSize().width, 400);
+		
 	}
 }

@@ -6,8 +6,13 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JComboBox;
+import javax.swing.event.PopupMenuEvent;
+import javax.swing.event.PopupMenuListener;
 
-public class ETBoxClass extends JComboBox<Object> implements ItemListener, MouseListener{
+import com.Project.M.ETFile;
+import com.Project.M.ETLog;
+
+public class ETBoxClass extends JComboBox<Object> implements ItemListener, PopupMenuListener{
 	
 	/**
 	 * 
@@ -20,17 +25,24 @@ public class ETBoxClass extends JComboBox<Object> implements ItemListener, Mouse
 		// TODO Auto-generated constructor stub
 		super();
 		
-		for (int i = 0; i < 10; i++) {
-			addItem('a' + i);
-		}
+		updateItems();
 		
 		addItemListener(this);
+		addPopupMenuListener(this);
 		
+
 		loadConfig();
 	}
 	
+	private void updateItems() {
+		removeAllItems();
+		for (String item : ETFile.getCSVFile()) {
+			addItem(item);
+		}
+	}
+	
 	private void loadConfig() {
-		getSelectedIndex();
+		
 	}
 	
 	
@@ -47,36 +59,27 @@ public class ETBoxClass extends JComboBox<Object> implements ItemListener, Mouse
 			int id = getSelectedIndex();
 			getSelectedItem();
 			
-			System.out.println(id + " " + string);
+			ETLog.debug(id + " " + string);
 		}
 	}
 
+
+
 	@Override
-	public void mouseClicked(MouseEvent e) {
+	public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
 		// TODO Auto-generated method stub
-		loadConfig();
+		ETLog.debug("reload the config file");
+		updateItems();
 	}
 
 	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
+	public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
+	public void popupMenuCanceled(PopupMenuEvent e) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -17,6 +17,6 @@ public class ETBoxTime extends JComboBox<String> {
 		for (int i = 1; i <= 10; i++) {
 			addItem(String.valueOf(i));
 		}
+		
 	}
-
 }

@@ -3,6 +3,7 @@ package com.Project.V;
 import java.awt.Dimension;
 import java.awt.Event;
 import java.awt.FlowLayout;
+import java.awt.Image;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.RenderingHints.Key;
@@ -34,11 +35,13 @@ public class ETFrame extends JFrame implements MouseListener, MouseMotionListene
 	private static final long serialVersionUID = 1L;
 	
 	private final int WIDTH = 300;
-	private final int HEIGHT = 100;
+	private final int HEIGHT = 400;
 	
 	private Point point;
 	
 	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	
+
 	
 	public ETFrame() {
 		// TODO Auto-generated constructor stub
@@ -46,7 +49,8 @@ public class ETFrame extends JFrame implements MouseListener, MouseMotionListene
 		
 		//setSize(WIDTH, HEIGHT);
 		setLocation( (screenSize.width - WIDTH) / 2, (screenSize.height - HEIGHT) / 2);
-		setResizable(false);
+		setResizable(true);
+		
 		setUndecorated(true);
 		
 		/* get the location */

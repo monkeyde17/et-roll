@@ -1,6 +1,7 @@
 package com.Project.Test;
 
 import com.Project.M.ETCore;
+import com.Project.M.ETLog;
 
 public class TestCore {
 
@@ -8,25 +9,25 @@ public class TestCore {
 		// TODO Auto-generated method stub
 		
 		/* 1 */
-		System.out.println("[Test] -- Next(int)");
+		ETLog.debug("Next(int)");
 		for (int i = 0; i < 10; i++) {
 			System.out.println(ETCore.Next(1000));
 		}
-		System.out.println("------------------");
+		ETLog.LINE();
 		
 		/* 2 */
-		System.out.println("[Test] -- Rand(int)");
+		ETLog.debug("Rand(int)");
 		for (int i = 0; i < 10; i++) {
 			System.out.println(ETCore.Rand(123));
 		}
-		System.out.println("------------------");
+		ETLog.LINE();
 		
 		/* 3 */
-		System.out.println("[Test] -- Rand(int, int)");
+		ETLog.debug("Rand(int, int)");
 		for (int i = 0; i < 10; i++) {
-			System.out.println(ETCore.Rand(23, 9));
+			ETLog.debug(String.valueOf(ETCore.Rand(23, 9)));
 		}
-		System.out.println("------------------------");
+		ETLog.LINE();
 	}
 
 }

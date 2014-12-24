@@ -4,12 +4,14 @@ public class ETCore {
 
 	private static int MAXNUM = 0xffffff;
 	
+	
+	
 	private static int CurNum = Rand(999);
 	
 	/**
 	 * 
 	 * @param cnt
-	 * @return
+	 * @return [0, cnt - 1]
 	 */
 	public static int Rand(int cnt) {
 		CurNum = (int)(Math.random() * MAXNUM);
@@ -20,7 +22,7 @@ public class ETCore {
 	 * 
 	 * @param cnt
 	 * @param start
-	 * @return
+	 * @return [start, start + cnt - 1]
 	 */
 	public static int Rand(int cnt, int start) {
 		return Rand(cnt) + start;
