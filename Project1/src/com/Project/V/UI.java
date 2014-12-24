@@ -36,7 +36,11 @@ public class UI {
 		nPanel.add(new ETBoxWay());
 		
 		nPanel.add(new ETBoxTime());
-		nPanel.add(new Label("s"));
+		nPanel.add(new Label("s       "));
+		
+		nPanel.add(new Label("delta"));
+		nPanel.add(new ETBoxDelta());
+		nPanel.add(new Label("ms"));
 		
 		frame.getContentPane().add(nPanel, "North");
 		frame.getContentPane().add(new ETLabel(), "Center");

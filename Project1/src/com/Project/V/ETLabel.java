@@ -40,7 +40,9 @@ public class ETLabel extends Label implements MouseListener, MouseWheelListener 
 	
 	private ETPerson curPerson = null;
 	
-	private int leftTime = 0;
+	private long leftTime = 0;
+	
+	private long deltaTime = 30;
 	
 	
 	public ETLabel() {
@@ -96,6 +98,7 @@ public class ETLabel extends Label implements MouseListener, MouseWheelListener 
 		} else {
 			timer = new Timer();
 			leftTime = ETDataManager.getInstant().getRandSecond() * 1000;
+			deltaTime = ETDataManager.getInstant().getDeltaTime();
 			
 			timer.schedule(new TimerTask() {
 				@Override
@@ -110,7 +113,7 @@ public class ETLabel extends Label implements MouseListener, MouseWheelListener 
 					}
 					
 					/* inf, this line code may cause some problem */
-					leftTime -= 30;
+					leftTime -= deltaTime;
 					
 					curPerson = ETDataManager.getInstant().getRandPerson();
 					int type = ETDataManager.getInstant().getShowWay();
@@ -124,7 +127,7 @@ public class ETLabel extends Label implements MouseListener, MouseWheelListener 
 						return;
 					}
 				}
-			}, 0, 30);
+			}, 0, deltaTime);
 		}
 	}
 

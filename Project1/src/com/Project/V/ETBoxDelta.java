@@ -8,22 +8,23 @@ import javax.swing.JComboBox;
 import com.Project.M.ETDataManager;
 import com.Project.M.ETLog;
 
-public class ETBoxWay extends JComboBox<String> implements ItemListener {
+public class ETBoxDelta extends JComboBox<String> implements ItemListener {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	public static final String RAND_STRING = "rand";
-	public static final String ROLL_STRING = "roll";
 	
-	public ETBoxWay() {
+	public ETBoxDelta() {
 		// TODO Auto-generated constructor stub
-		addItem(RAND_STRING);
-		addItem(ROLL_STRING);
-		ETDataManager.getInstant().setRandWay(RAND_STRING);
+		
+		for (int i = 0; i < 10; i++) {
+			addItem(String.valueOf(30 + i * 70));
+		}
+		
+		ETDataManager.getInstant().setDeltaTime(30);
 		addItemListener(this);
+
 	}
 
 	@Override
@@ -35,7 +36,8 @@ public class ETBoxWay extends JComboBox<String> implements ItemListener {
 			int id = getSelectedIndex();
 
 			ETLog.debug(id + ":" + string);
-			ETDataManager.getInstant().setRandWay(string);
+		
+			ETDataManager.getInstant().setDeltaTime(Integer.valueOf(string));
 		}
 	}
 }

@@ -10,6 +10,7 @@ public class ETDataManager {
 	private int randSecond = -1;
 	private String randWay = ETBoxWay.RAND_STRING;
 	private int showWay = 0;
+	private int deltaTime = 0;
 	
 	private List<ETPerson> list = null;
 	
@@ -66,7 +67,7 @@ public class ETDataManager {
 			rid = ETCore.Rand(cnt);
 		} else if (randWay.equals("roll")) {
 			rid = ETCore.Next(cnt);
-		} else if (randWay.equals("rand+pow")) {
+		} else {
 			rid = ETCore.Rand(cnt);
 		}
 		
@@ -79,6 +80,15 @@ public class ETDataManager {
 
 	public void setShowWay(int showWay) {
 		this.showWay = showWay;
+	}
+
+	public int getDeltaTime() {
+		return deltaTime;
+	}
+
+	public void setDeltaTime(int deltaTime) {
+		if (deltaTime < 30) deltaTime = 30;
+		this.deltaTime = deltaTime;
 	}
 
 }
