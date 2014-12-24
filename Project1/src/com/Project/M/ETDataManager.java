@@ -9,7 +9,7 @@ public class ETDataManager {
 	private String classFileUrl = "";
 	private int randSecond = -1;
 	private String randWay = ETBoxWay.RAND_STRING;
-	
+	private int showWay = 0;
 	
 	private List<ETPerson> list = null;
 	
@@ -56,13 +56,20 @@ public class ETDataManager {
 		return list;
 	}
 	
-	public String getRandName() {
+	public ETPerson getRandPerson() {
 		int cnt = list.size();
 		int rid = ETCore.Rand(cnt);
 		
-		ETPerson person = list.get(rid);
-		
-		return person.getId() + ":\n"+ person.getName();
+		return list.get(rid);
 	}
+
+	public int getShowWay() {
+		return showWay;
+	}
+
+	public void setShowWay(int showWay) {
+		this.showWay = showWay;
+	}
+
 }
 

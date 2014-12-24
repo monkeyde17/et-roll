@@ -25,6 +25,7 @@ public class ETBoxWay extends JComboBox<String> implements ItemListener {
 		addItem(ROLL_STRING);
 		addItem(RANDPOW_STRING);
 		ETDataManager.getInstant().setRandWay(RAND_STRING);
+		addItemListener(this);
 	}
 
 	@Override

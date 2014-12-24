@@ -25,7 +25,8 @@ public class ETBoxTime extends JComboBox<String> implements ItemListener {
 		}
 		
 		ETDataManager.getInstant().setRandSecond(-1);
-		
+		addItemListener(this);
+
 	}
 
 	@Override

@@ -50,4 +50,26 @@ public class ETPerson {
 		this.imageUrl = url;
 	}
 
+	/**
+	 * 
+	 * @param type
+	 *		0 	-- id
+	 *		1 	-- name
+	 * 		2	-- id + name
+	 * @return the rand show
+	 */
+	public String getNameByType(int type) {
+
+		switch (type) {
+		case 0:
+			return id + "";
+		case 1:
+			return name;
+		case 2:
+			return id + ":" + name;
+		}
+
+		return id + ":" + name;
+	}
+
 }

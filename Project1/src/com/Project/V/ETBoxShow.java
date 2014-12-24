@@ -8,7 +8,7 @@ import javax.swing.JComboBox;
 import com.Project.M.ETDataManager;
 import com.Project.M.ETLog;
 
-public class ETBoxShow extends JComboBox<String> {
+public class ETBoxShow extends JComboBox<String> implements ItemListener {
 	
 	/**
 	 * 
@@ -25,10 +25,23 @@ public class ETBoxShow extends JComboBox<String> {
 		addItem(ID_STRING);
 		addItem(NAME_STRING);
 		addItem(ID_STRING + "+" + NAME_STRING);
+		
+		ETDataManager.getInstant().setShowWay(0);
+		addItemListener(this);
+
 	}
 
 
 
+	@Override
+	public void itemStateChanged(ItemEvent e) {
+		// TODO Auto-generated method stub
+		if (e.getStateChange() == ItemEvent.SELECTED) {
+			String string = e.getItem().toString();
+			int id = getSelectedIndex();
 
-
+			ETLog.debug(id + ":" + string);
+			ETDataManager.getInstant().setShowWay(id);
+		}
+	}
 }

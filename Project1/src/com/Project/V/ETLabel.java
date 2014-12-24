@@ -19,6 +19,7 @@ import javax.imageio.ImageIO;
 
 import com.Project.M.ETCore;
 import com.Project.M.ETDataManager;
+import com.Project.M.ETPerson;
 
 public class ETLabel extends Label implements MouseListener, MouseWheelListener {
 
@@ -36,6 +37,8 @@ public class ETLabel extends Label implements MouseListener, MouseWheelListener 
 	
 	private Image bgImage = null;
 	private String bgUrl = null;
+	
+	private ETPerson curPerson = null;
 	
 	public ETLabel() {
 		// TODO Auto-generated constructor stub
@@ -57,6 +60,7 @@ public class ETLabel extends Label implements MouseListener, MouseWheelListener 
 		// TODO Auto-generated method stub
 		super.paint(g);
 		
+		if (bgUrl == null) return;
 		try {
 			bgImage = ImageIO.read(new File(bgUrl));
 		} catch (IOException e) {
@@ -68,7 +72,9 @@ public class ETLabel extends Label implements MouseListener, MouseWheelListener 
 	}
 
 	private void updateImage() {
-		bgUrl = ETCore.Rand(2, 1) + ".jpg";
+		if (curPerson != null) {
+			bgUrl = curPerson.getImageUrl();
+		}
 	}
 	
 	
@@ -91,8 +97,9 @@ public class ETLabel extends Label implements MouseListener, MouseWheelListener 
 				public void run() {
 					// TODO Auto-generated method stub
 					
-					setText(String.valueOf(ETCore.Next(10000)));
-					setText(ETDataManager.getInstant().getRandName());
+					curPerson = ETDataManager.getInstant().getRandPerson();
+					int type = ETDataManager.getInstant().getShowWay();
+					setText(curPerson.getNameByType(type));					
 					updateImage();
 				}
 			}, 0, 30);
